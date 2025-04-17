@@ -51,7 +51,7 @@ Are you tired of online download websites that are slow, full of ads, or don't w
 
 Here's Social Saver in action:
 
-![Social Saver Preview](https://cdn.jsdelivr.net/gh/VishalKaleria/social-saver@main/public/videos/social-saver-preview.gif)
+![Social Saver Preview](https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/videos/social-saver-preview.gif)
 
 
 *Video showing the app interface and downloading process.*
