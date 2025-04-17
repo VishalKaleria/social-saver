@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { useForm, Controller } from "react-hook-form"; // Import Controller
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import isEqual from "lodash/isEqual";
 
-// --- Shadcn UI Imports ---
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -53,12 +52,10 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
-// --- Context and Types ---
 import { useGlobalContext } from "@/context/global-context";
 
 import { GlobalSettings } from "@/types";
 
-// --- Constants ---
 const FILENAME_VARIABLES = [
   { name: "title", description: "Video title" },
   { name: "id", description: "Video ID" },
@@ -88,7 +85,6 @@ const DATE_FORMATS = [
   { format: "D MMMM YYYY", example: "15 April 2023" },
 ];
 
-// --- Zod Schema (UI Structure) ---
 const formSchema = z.object({
   downloadPaths: z.object({
     video: z.string().min(1, "Video path is required"),
@@ -157,12 +153,10 @@ const formSchema = z.object({
 });
 type SettingsFormValues = z.infer<typeof formSchema>;
 
-// --- Utility Function: Map Form Values to GlobalSettings ---
 const mapFormToGlobalSettings = (
   values: SettingsFormValues,
   currentSettings: GlobalSettings | null
 ): GlobalSettings => {
-  // Ensure we handle potential null currentSettings if necessary, though it shouldn't be null here
   if (!currentSettings) {
     throw new Error(
       "Cannot map settings: current global settings are missing."
@@ -174,22 +168,21 @@ const mapFormToGlobalSettings = (
       audio: values.downloadPaths.audio,
       image: values.downloadPaths.image,
       playlist: values.downloadPaths.playlist,
-      // Default combined to video if form field is empty/undefined
+
       combined: values.downloadPaths.combined || values.downloadPaths.video,
     },
     ffmpeg: {
-      // Include all ffmpeg fields from the source type
-      ffmpegPath: currentSettings.ffmpeg.ffmpegPath, // Keep existing path if not editable in form
+      ffmpegPath: currentSettings.ffmpeg.ffmpegPath,
       defaultQuality: values.ffmpeg.defaultQuality,
       defaultVideoFormat: values.ffmpeg.defaultVideoFormat,
       defaultAudioFormat: values.ffmpeg.defaultAudioFormat,
       defaultImageFormat: values.ffmpeg.defaultImageFormat,
       maxConcurrentJobs: values.ffmpeg.maxConcurrentJobs,
       cooldownTimeBetweenJobs: values.ffmpeg.cooldownTimeBetweenJobs,
-      // Map history cleanup settings from form group
+
       maxCompletedJobsToKeep: values.historyCleanup.maxCompletedJobsToKeep,
       autoCleanupCompletedJobs: values.historyCleanup.autoCleanupCompletedJobs,
-      autoCleanupTimeMs: values.historyCleanup.autoCleanupTimeHours * 3600000, // Hours to ms
+      autoCleanupTimeMs: values.historyCleanup.autoCleanupTimeHours * 3600000,
     },
     filenameTemplate: {
       enabled: values.filenameTemplate.enabled,
@@ -200,7 +193,6 @@ const mapFormToGlobalSettings = (
       handleDuplicates: values.filenameTemplate.handleDuplicates,
     },
     ui: {
-      // Combine UI settings from form groups
       autoStart: values.uiAutoStart.autoStart,
       theme: values.uiApp.theme,
       saveHistory: values.uiApp.saveHistory,
@@ -209,20 +201,18 @@ const mapFormToGlobalSettings = (
       maxHistoryItems: values.uiApp.maxHistoryItems,
     },
     site: {
-      // Map update settings from form group
       autoCheckUpdates: values.updateSettings.autoCheckUpdates,
       notifyOnUpdates: values.updateSettings.notifyOnUpdates,
       checkFrequency: values.updateSettings.checkFrequency,
       preferNightlyYtdlp: values.updateSettings.preferNightlyYtdlp,
       autoUpdateYtdlp: values.updateSettings.autoUpdateYtdlp,
-      // Preserve last check time from current settings
+
       lastUpdateCheck: currentSettings.site.lastUpdateCheck,
     },
     ytdlp: {
-      // Include all ytdlp fields from the source type
       ...values.ytdlp,
-      // Ensure optional string fields are properly handled (null vs empty string if needed)
-      proxy: values.ytdlp.proxy || undefined, // Send undefined if empty? Or empty string? Match backend expectation.
+
+      proxy: values.ytdlp.proxy || undefined,
       cookies: values.ytdlp.cookies || undefined,
       userAgent: values.ytdlp.userAgent || undefined,
       referer: values.ytdlp.referer || undefined,
@@ -230,7 +220,6 @@ const mapFormToGlobalSettings = (
   };
 };
 
-// --- Utility Function: Map GlobalSettings to Form Values ---
 const mapGlobalSettingsToForm = (
   settings: GlobalSettings
 ): SettingsFormValues => {
@@ -268,11 +257,11 @@ const mapGlobalSettingsToForm = (
       autoCleanupTimeHours: Math.max(
         1,
         Math.round(settings.ffmpeg.autoCleanupTimeMs / 3600000)
-      ), // ms to hours, ensure min 1
+      ),
     },
     ytdlp: {
       ...settings.ytdlp,
-      // Ensure optional fields are empty strings for the form if they are null/undefined
+
       proxy: settings.ytdlp.proxy || "",
       cookies: settings.ytdlp.cookies || "",
       userAgent: settings.ytdlp.userAgent || "",
@@ -281,19 +270,17 @@ const mapGlobalSettingsToForm = (
   };
 };
 
-// --- Component ---
 export function GlobalSettingsPage() {
   const {
     globalSettings,
-    updateGlobalSettings, // Assumed to be async and return boolean success
-    refreshGlobalSettings, // Assumed to be async
+    updateGlobalSettings,
+    refreshGlobalSettings,
     isSettingsLoading: isContextLoading,
     settingsError,
   } = useGlobalContext();
 
-  // Component-level loading state for actions (save, reset)
   const [isProcessing, setIsProcessing] = useState(false);
-  // State to track initial loaded settings for comparison
+
   const [initialFormValues, setInitialFormValues] =
     useState<SettingsFormValues | null>(null);
   const [previewFilename, setPreviewFilename] = useState(
@@ -302,7 +289,7 @@ export function GlobalSettingsPage() {
 
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {}, // Initialize empty, load from context
+    defaultValues: {},
   });
 
   const {
@@ -313,15 +300,14 @@ export function GlobalSettingsPage() {
     setValue,
   } = form;
 
-  // Effect to load settings into the form when context provides them
   useEffect(() => {
     if (globalSettings && !isContextLoading && !settingsError) {
       console.log("Mapping GlobalSettings to form on mount/update...");
       try {
         const mappedValues = mapGlobalSettingsToForm(globalSettings);
-        reset(mappedValues); // Reset form with mapped values
-        setInitialFormValues(mappedValues); // Store initial values for dirty check/reset
-        generatePreview(mappedValues.filenameTemplate); // Generate initial preview
+        reset(mappedValues);
+        setInitialFormValues(mappedValues);
+        generatePreview(mappedValues.filenameTemplate);
         console.log("Form reset complete.");
       } catch (error) {
         console.error("Error mapping settings to form:", error);
@@ -330,9 +316,8 @@ export function GlobalSettingsPage() {
         });
       }
     }
-  }, [globalSettings, isContextLoading, settingsError, reset]); // Add reset and generatePreview
+  }, [globalSettings, isContextLoading, settingsError, reset]);
 
-  // --- Filename Preview Logic (Mostly Unchanged, using useCallback) ---
   const formatDateForPreview = useCallback(
     (dateStr: string, format: string) => {
       if (!dateStr || dateStr.length !== 8 || !/^\d{8}$/.test(dateStr))
@@ -444,14 +429,13 @@ export function GlobalSettingsPage() {
     [formatDateForPreview]
   );
 
-  // Update preview when filename template values change
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name && name.startsWith("filenameTemplate.")) {
         generatePreview(value.filenameTemplate);
       }
     });
-    // Generate preview on initial load if values exist
+
     const currentTemplateValues = getValues("filenameTemplate");
     if (currentTemplateValues) {
       generatePreview(currentTemplateValues);
@@ -483,9 +467,7 @@ export function GlobalSettingsPage() {
     },
     [getValues, setValue]
   );
-  // --- End Filename Preview Logic ---
 
-  // --- File/Directory Selection Helpers (Unchanged, using useCallback) ---
   const handleSelectDirectory = useCallback(
     async (fieldName: keyof SettingsFormValues["downloadPaths"]) => {
       try {
@@ -543,13 +525,9 @@ export function GlobalSettingsPage() {
     },
     [setValue]
   );
-  // --- End Selection Helpers ---
 
-  // --- Form Submission (Save) ---
   const onSubmit = useCallback(
     async (values: SettingsFormValues) => {
-      // Check for actual changes compared to initial load
-      // This prevents saving if the user clicks save without modifications
       if (!isDirty && initialFormValues && isEqual(values, initialFormValues)) {
         toast.info("No Changes Detected", {
           description: "Settings haven't been modified.",
@@ -558,26 +536,21 @@ export function GlobalSettingsPage() {
       }
 
       console.log("Form values submitted:", values);
-      setIsProcessing(true); // Use component-level processing state
+      setIsProcessing(true);
       try {
-        // Map form values to the GlobalSettings structure expected by the context/backend
         const settingsToSave = mapFormToGlobalSettings(values, globalSettings);
         console.log("Mapped GlobalSettings for update:", settingsToSave);
 
-        // Call the context function to handle the async update
         const success = await updateGlobalSettings(settingsToSave);
 
         if (success) {
           toast.success("Settings Saved", {
             icon: <Check className="h-4 w-4" />,
           });
-          // Important: Reset the form with the *successfully saved values*
-          // This updates the form's internal state and clears the dirty flag
-          reset(values); // Use the submitted values that were just saved
-          setInitialFormValues(values); // Update initial values to reflect saved state
+
+          reset(values);
+          setInitialFormValues(values);
         } else {
-          // The context function should ideally handle specific error reporting.
-          // We show a generic failure toast here if it returns false.
           toast.error("Save Failed", {
             description: "Could not save settings. Check logs.",
             icon: <XIcon className="h-4 w-4" />,
@@ -594,10 +567,24 @@ export function GlobalSettingsPage() {
       }
     },
     [globalSettings, updateGlobalSettings, reset, isDirty, initialFormValues]
-  ); // Added isDirty and initialFormValues
+  );
 
-  // --- Reset Settings ---
   const resetToDefaults = useCallback(async () => {
+    // first check is there any active downloads 
+    if (typeof window.electronAPI.ffmpeg.getActiveJobs === "function") {
+      const activeJobs = await window.electronAPI.ffmpeg.getActiveJobs();
+      if (activeJobs.success && activeJobs.data.activeJobs.length > 0) {
+        toast.error("Cannot Reset Settings", {
+          description:
+            "There are active downloads. Please wait for them to finish.",
+          icon: <XIcon className="h-4 w-4" />,
+        });
+        return;
+      }
+    }
+    
+
+
     if (
       !window.confirm("Reset all settings to defaults? This cannot be undone.")
     )
@@ -607,18 +594,18 @@ export function GlobalSettingsPage() {
       if (!window.electronAPI?.settings?.resetToDefaults) {
         throw new Error("Settings reset API not available");
       }
-      // Call backend to reset settings file
+
       const response = await window.electronAPI.settings.resetToDefaults();
 
       if (response.success && response.data) {
         const defaultSettings: GlobalSettings = response.data;
-        // Map the received defaults back to the form structure
+
         const mappedDefaults = mapGlobalSettingsToForm(defaultSettings);
-        // Reset the form with the new default values
+
         reset(mappedDefaults);
-        setInitialFormValues(mappedDefaults); // Update initial values
+        setInitialFormValues(mappedDefaults);
         generatePreview(mappedDefaults.filenameTemplate);
-        // Refresh the global context state to reflect the reset
+
         await refreshGlobalSettings();
         toast.warning("Settings Reset", {
           description: "Settings have been reset to defaults.",
@@ -637,9 +624,7 @@ export function GlobalSettingsPage() {
     } finally {
       setIsProcessing(false);
     }
-  }, [reset, refreshGlobalSettings, generatePreview]); // Dependencies
-
-  // --- Render Helper Functions (Tabs) ---
+  }, [reset, refreshGlobalSettings, generatePreview]);
 
   const renderDownloadsTab = () => (
     <div className="space-y-6">
@@ -1757,13 +1742,13 @@ export function GlobalSettingsPage() {
                   {/* Input field still works with bytes */}
                   <Input
                     type="number"
-                    min={1 * 1024 * 1024} // 1MB
-                    max={2 * 1024 * 1024 * 1024} // 2GB
-                    step={1 * 1024 * 1024} // Step by 1MB
-                    value={field.value} // Bind to form state value (bytes)
+                    min={1 * 1024 * 1024}
+                    max={2 * 1024 * 1024 * 1024}
+                    step={1 * 1024 * 1024}
+                    value={field.value}
                     onChange={(e) => {
                       const bytes = parseInt(e.target.value, 10);
-                      // Ensure value is within bounds when setting
+
                       const clampedBytes = Math.max(
                         1 * 1024 * 1024,
                         Math.min(
@@ -1789,9 +1774,7 @@ export function GlobalSettingsPage() {
     </div>
   );
 
-  // --- Loading / Error States ---
   if (isContextLoading || !initialFormValues) {
-    // Check initialFormValues instead of formIsLoading
     return (
       <div className="flex items-center justify-center h-64">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -1809,7 +1792,6 @@ export function GlobalSettingsPage() {
     );
   }
 
-  // --- Final Render ---
   return (
     <Form {...form}>
       <form
