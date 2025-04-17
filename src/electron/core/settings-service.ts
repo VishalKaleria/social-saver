@@ -380,6 +380,8 @@ export class GlobalSettingsService {
     this.settings = { ...this.DEFAULT_SETTINGS };
     this.saveSettings();
     this.ensureDownloadDirectories();
+    app.relaunch()
+    app.exit(0)
     return { ...this.settings };
   }
 
