@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       
       - name: Install pnpm
         run: npm install -g pnpm
@@ -34,14 +32,6 @@ jobs:
           VERSION=$(node -p "require('./package.json').version")
           echo "VERSION=v$VERSION" >> $GITHUB_ENV
           echo "Detected version: v$VERSION"
-      
-      - name: Create or force push version tag
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -f "$VERSION" || echo "Tag already exists"
-          git push origin "$VERSION" --force || echo "Tag push failed, continuing anyway"
       
       - name: Build application
         run: pnpm run build
