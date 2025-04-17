@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "com.vishalkaleria.socialsaver",
   "asar": true,
-  "productName": "SocialSaver",
+  "productName": "Social Saver",
   "copyright": "Copyright © 2025 Vishal Kaleria",
   "directories": {
     "output": "release/${version}"
