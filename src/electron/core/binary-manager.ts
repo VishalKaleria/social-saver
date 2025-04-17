@@ -46,7 +46,7 @@ class BinaryManager {
     }
 
     console.log(`Using yt-dlp binary at: ${binPath}`);
-    return binPath;
+    return `"${binPath}"`; // for child_process.exec
   }
 
   /**
