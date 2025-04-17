@@ -1,0 +1,1 @@
+declare module '@w3vish/fluent-ffmpeg';
