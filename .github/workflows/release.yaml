@@ -3,9 +3,6 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-permissions:
-  contents: write
-  packages: write
 jobs:
   release:
     strategy:
@@ -16,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Get all history for proper versioning
+          fetch-depth: 0
       
       - name: Install pnpm
         run: npm install -g pnpm
@@ -35,24 +32,24 @@ jobs:
         shell: bash
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          echo "VERSION=v$VERSION"
           echo "VERSION=v$VERSION" >> $GITHUB_ENV
+          echo "Detected version: v$VERSION"
       
       - name: Create or force push version tag
         shell: bash
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git tag -f "$VERSION"
-          git push -f https://${{ secrets.GH_PAT }}@github.com/VishalKaleria/social-saver.git "$VERSION"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -f "$VERSION" || echo "Tag already exists"
+          git push origin "$VERSION" --force || echo "Tag push failed, continuing anyway"
       
       - name: Build application
         run: pnpm run build
       
-      - name: Publish Release
+      - name: Publish release
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           EP_GH_IGNORE_TIME: true
-          ELECTRON_BUILDER_ALLOW_SAME_VERSION: true
         run: |
+          echo "Publishing with GH_PAT to repository: vishalkaleria/social-saver"
           pnpm exec electron-builder --publish always
