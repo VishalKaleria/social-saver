@@ -1,0 +1,122 @@
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.vishalkaleria.socialsaver",
+  "asar": true,
+  "productName": "SocialSaver",
+  "copyright": "Copyright © 2025 Vishal Kaleria",
+  "directories": {
+    "output": "release/${version}"
+  },
+  "files": [
+    "dist",
+    "dist-electron"
+  ],
+  "extraResources": [
+    {
+      "from": "resources/binaries",
+      "to": "resources/binaries",
+      "filter": [
+        "**/*"
+      ]
+    },
+    {
+      "from": "public/icons",
+      "to": "public/icons",
+      "filter": [
+        "**/*"
+      ]
+    }
+  ],
+  "asarUnpack": [
+    "resources/binaries/**/*"
+  ],
+  "compression": "maximum",
+  "mac": {
+    "target": [
+      "dmg",
+      "zip"
+    ],
+    "icon": "public/icons/mac/icon.icns",
+    "artifactName": "${productName}-Mac-${version}-${arch}.${ext}",
+    "category": "public.app-category.utilities",
+    "darkModeSupport": true,
+    "hardenedRuntime": true,
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist"
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 130,
+        "y": 220
+      },
+      {
+        "x": 410,
+        "y": 220,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ],
+    "window": {
+      "width": 540,
+      "height": 380
+    }
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      },
+      {
+        "target": "portable",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "icon": "public/icons/win/icon.ico",
+    "artifactName": "${productName}-Windows-${version}-${arch}-Setup.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false,
+    "differentialPackage": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Social Saver"
+  },
+  "portable": {
+    "artifactName": "${productName}-Windows-${version}-${arch}-Portable.${ext}"
+  },
+  "linux": {
+    "target": [
+      "AppImage",
+      "deb",
+      "rpm"
+    ],
+    "icon": "public/icons/png/512x512.png",
+    "artifactName": "${productName}-Linux-${version}-${arch}.${ext}",
+    "category": "Utility",
+    "synopsis": "Download media from social platforms",
+    "desktop": {
+      "entry": {
+        "Name": "Social Saver",
+        "Comment": "All-in-One Social Media Downloader",
+        "Categories": "Utility;Network;VideoDownloader"
+      }
+    }
+  },
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "vishalkaleria",
+      "repo": "social-saver",
+      "releaseType": "release"
+    }
+  ]
+}
