@@ -1,86 +1,76 @@
 name: Build & Release
 
 on:
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch: # Allows manual triggering
   push:
-    branches: [main] # Trigger on push to main
+    branches: [main] # Triggers on push to main
 
 permissions:
-  contents: write # Needed for tagging WITHIN the private repo
-  # packages: write # Not needed unless using GitHub Packages
+  contents: write # Needed for checkout and potentially tagging in the private repo
+  # packages: write # Only needed if publishing to GitHub Packages registry
 
 jobs:
   release:
     strategy:
+      fail-fast: false # Allow other jobs to continue if one fails
       matrix:
-        # Ensure you have runners available for all these if needed (GitHub-hosted are available)
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # Use latest checkout action
+        uses: actions/checkout@v4 # Use latest version
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4 # Use dedicated pnpm action
-        with:
-          version: 8 # Specify pnpm version if needed, or let it use latest
-
+        uses: pnpm/action-setup@v3 # Use dedicated pnpm action
+        
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
+          # Optional: Cache electron-builder binaries too
+          # cache-dependency-path: |
+          #  pnpm-lock.yaml
+          #  ~/.cache/electron-builder
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile # Use --frozen-lockfile for CI
+        run: pnpm install --frozen-lockfile # Use --frozen-lockfile for CI consistency
 
       - name: Get version from package.json
         id: get_version
         shell: bash
         run: |
-          # Extract version, remove 'v' if present, then add 'v' prefix consistently
-          PKG_VERSION=$(node -p "require('./package.json').version")
-          VERSION="v${PKG_VERSION#v}" # Ensure 'v' prefix, handle if already present
-          echo "Extracted version: $PKG_VERSION, Using tag: $VERSION"
-          echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
+          VERSION=$(node -p "require('./package.json').version")
+          # Ensure the version is prefixed with 'v' for the tag
+          if [[ $VERSION != v* ]]; then
+            VERSION="v$VERSION"
+          fi
+          echo "APP_VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "Detected version tag: $VERSION"
 
+      # Optional: Tagging the *private* repo. Consider if you want tags on public instead.
       - name: Create or force push version tag (in private repo)
         env:
-           # Use the PAT here too if your default GITHUB_TOKEN permissions are restricted
-           # If GITHUB_TOKEN has contents:write, it's fine for tagging the private repo.
-           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Or potentially secrets.GH_PAT if needed
+           # Use PAT for pushing tag as well, for consistency/if needed later
+           GIT_TOKEN: ${{ secrets.GH_PAT }}
         shell: bash
         run: |
-          echo "Attempting to tag and push ${APP_VERSION}"
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Check if tag exists remotely before forcing, less disruptive
-          if git ls-remote --tags origin | grep -q "refs/tags/${APP_VERSION}"; then
-            echo "Tag ${APP_VERSION} exists remotely. Force pushing."
-            git tag -f "${APP_VERSION}" # Create/update tag locally
-            git push origin "${APP_VERSION}" --force # Force push the specific tag
-          else
-            echo "Tag ${APP_VERSION} does not exist remotely. Creating and pushing."
-            git tag "${APP_VERSION}" # Create tag locally
-            git push origin "${APP_VERSION}" # Push the new tag
-          fi
-        # Keep continue-on-error for tagging as it might sometimes conflict harmlessly
-        continue-on-error: true
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -f "$APP_VERSION"
+          # Authenticate push using the token
+          git push https://x-access-token:${GIT_TOKEN}@github.com/${{ github.repository }}.git "$APP_VERSION" --force
+        continue-on-error: true # Continue if tag push fails (e.g., tag exists and force fails)
 
-      - name: Build & Publish via electron-builder
+      - name: Build & Publish to Public Repo via electron-builder
         env:
           # *** THIS IS THE KEY CHANGE ***
-          # Use the PAT which has permission to write to the PUBLIC repo
+          # Use your PAT for publishing to the public repo
           GH_TOKEN: ${{ secrets.GH_PAT }}
-          # Set CSC variables if you are code signing (replace with your actual secrets)
-          # CSC_LINK: ${{ secrets.CSC_LINK }}
-          # CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-          # APPLE_ID: ${{ secrets.APPLE_ID }}
-          # APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
-          # APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          # The following might not be needed if using PAT, but doesn't hurt
+          # EP_GH_IGNORE_TIME: true
+        # Remove || echo ... unless you specifically want the workflow to succeed even if build/publish fails
         run: |
-          # Run build step separately first - fail the job if build fails
-          pnpm run vite:build
-          # Run electron-builder to package and publish - fail the job if publish fails
+          pnpm run vite:build # Separate build step for frontend assets first
           pnpm exec electron-builder --publish always
