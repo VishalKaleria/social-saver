@@ -51,10 +51,9 @@ Are you tired of online download websites that are slow, full of ads, or don't w
 
 Here's Social Saver in action:
 
-<video width="100%" controls autoplay muted playsinline>
-  <source src="https://cdn.jsdelivr.net/gh/VishalKaleria/social-saver@main/public/videos/social-saver-preview.mp4" type="video/mp4">
-  Your browser does not support the video tag. Click <a href="https://cdn.jsdelivr.net/gh/VishalKaleria/social-saver@main/public/videos/social-saver-preview.mp4">here</a> to watch.
-</video>
+![Social Saver Preview](https://cdn.jsdelivr.net/gh/VishalKaleria/social-saver@main/public/videos/social-saver-preview.gif)
+
+
 *Video showing the app interface and downloading process.*
 
 ---
