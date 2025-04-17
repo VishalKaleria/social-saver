@@ -2,7 +2,7 @@
   "name": "social-saver",
   "productName": "Social Saver",
   "private": true,
-  "version": "1.0.0-beta",
+  "version": "1.0.1-beta",
   "description": "Universal Desktop Media Downloader",
   "type": "module",
   "author": {
