@@ -6,8 +6,8 @@ on:
     branches: [main]
 
 permissions:
-  contents: write # Permission for the default GITHUB_TOKEN within the private repo if needed by checkout etc.
-  # packages: write # Likely not needed
+  contents: write
+  packages: write
 
 jobs:
   release:
@@ -19,7 +19,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        # Checks out social-saver-origin (private repo)
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -33,57 +32,27 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Get version tag name from package.json
+      - name: Get version from package.json
         id: get_version
         shell: bash
         run: |
-          VERSION_RAW=$(node -p "require('./package.json').version")
-          if [ -z "$VERSION_RAW" ]; then
-            echo "Error: Could not extract version from package.json!"
-            exit 1
-          fi
-          # Ensure tag name starts with 'v' for consistency
-          TAG_NAME="v$VERSION_RAW"
-          echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_ENV
-          echo "Tag name set to: ${TAG_NAME}"
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=v$VERSION"
+          echo "VERSION=v$VERSION" >> $GITHUB_ENV
 
-      # --- FIX 1: Push tag to the PUBLIC repository ---
-      - name: Create or force push version tag to PUBLIC repo
-        env:
-          # Use the PAT here for pushing the tag to the public repo
-          GH_PAT: ${{ secrets.GH_PAT }}
-          TAG_NAME: ${{ env.TAG_NAME }} # Use the tag name set previously (e.g., v1.0.0-beta)
-          # Explicitly define the target public repository URL
-          PUBLIC_REPO_URL: https://github.com/vishalkaleria/social-saver.git
+      - name: Create or force push version tag
         shell: bash
         run: |
-          echo "Configuring Git user..."
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag -f "$VERSION"
+          git push origin "$VERSION" --force
+        continue-on-error: true
 
-          echo "Creating local tag ${TAG_NAME}"
-          # Create/update the tag locally pointing to the current commit checked out from private repo
-          git tag -f "${TAG_NAME}"
-
-          echo "Pushing tag ${TAG_NAME} to ${PUBLIC_REPO_URL}"
-          # Construct the push URL including the PAT for authentication
-          PUSH_URL="https://x-access-token:${GH_PAT}@github.com/vishalkaleria/social-saver.git"
-
-          # Push ONLY the tag to the public repo URL, using force
-          git push "${PUSH_URL}" "${TAG_NAME}" --force
-
-          echo "Tag push attempt to public repo completed."
-        # Keep your original error handling for this step
-        continue-on-error: true # If tag push fails, maybe you still want to try building?
-
-      # --- FIX 2: Ensure electron-builder uses the PAT ---
       - name: Build & Publish via electron-builder
         env:
-          # CRITICAL: Use the PAT secret for electron-builder's GitHub interaction
           GH_TOKEN: ${{ secrets.GH_PAT }}
-          # Keep your original env vars
           EP_GH_IGNORE_TIME: true
         run: |
-          # Keep your original build/publish commands and error handling
           pnpm run build || echo "Build failed, continuing..."
           pnpm exec electron-builder --publish always || echo "Release failed, continuing..."
