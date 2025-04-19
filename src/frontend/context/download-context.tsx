@@ -455,7 +455,6 @@ const startDownload = async (config: DownloadConfig): Promise<JobSubmissionResul
         size: ffmpegOptions.size || 0,
         metadata: itemMetadata,
         formatId: ffmpegOptions.formatId,
-        // Use settings for output path if available
         outputPath: config.outputPath ?? undefined,
       }
 
