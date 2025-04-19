@@ -1,8 +1,11 @@
-blank_issues_enabled: false # Discourage blank issues, guide users to templates
+blank_issues_enabled: false
 contact_links:
-  - name: ❓ Ask a Question / General Discussion
-    url: https://github.com/vishalkaleria/social-saver/discussions # Link to Discussions if enabled, otherwise remove or link to issues search
-    about: Please ask and answer general usage questions here.
-  - name: 📚 Documentation & Guides
-    url: https://socialsaver.site/docs
-    about: Check the documentation for setup, usage guides, and troubleshooting.
+   - name: ❓ Ask a Question / General Discussion
+     url: https://github.com/vishalkaleria/social-saver/discussions
+     about: Please ask usage questions or start general discussions here.
+   - name: 📚 Documentation & Guides
+     url: https://socialsaver.site/docs
+     about: Check the documentation for setup, usage guides, and troubleshooting first.
+   - name: 💬 Community Support (Reddit)
+     url: https://www.reddit.com/r/Social_Save/
+     about: Ask the community for help or discuss the app on Reddit.
