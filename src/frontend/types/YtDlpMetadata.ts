@@ -135,7 +135,7 @@ export type FormatDetails = {
   audioFormats?: {
     count: number;
     formatTypes: { [key: string]: number };
-    resolutions: { [key: string]: {} };
+    resolutions: { [key: string]: object };
     codecs: { [key: string]: number };
   };
   combinedFormats?: {

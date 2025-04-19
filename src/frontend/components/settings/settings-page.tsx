@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { useForm, Controller } from "react-hook-form";
+import React, { useState, useEffect, useCallback } from "react";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -12,6 +12,7 @@ import {
   Check,
   XIcon,
   FolderOpen,
+  AlertTriangleIcon,
 } from "lucide-react";
 import isEqual from "lodash/isEqual";
 
@@ -570,7 +571,7 @@ export function GlobalSettingsPage() {
   );
 
   const resetToDefaults = useCallback(async () => {
-    // first check is there any active downloads 
+    // first check is there any active downloads
     if (typeof window.electronAPI.ffmpeg.getActiveJobs === "function") {
       const activeJobs = await window.electronAPI.ffmpeg.getActiveJobs();
       if (activeJobs.success && activeJobs.data.activeJobs.length > 0) {
@@ -582,8 +583,6 @@ export function GlobalSettingsPage() {
         return;
       }
     }
-    
-
 
     if (
       !window.confirm("Reset all settings to defaults? This cannot be undone.")
@@ -712,6 +711,16 @@ export function GlobalSettingsPage() {
             Set preferred file types and quality for downloads, especially when
             conversion is needed.
           </CardDescription>
+          <Alert variant="destructive">
+            <AlertTitle className="flex gap-1">
+              <AlertTriangleIcon className="h-3 my-auto w-3" /> Warning
+            </AlertTitle>
+            <AlertDescription>
+              Changing the default audio format is not recommended unless you're
+              sure what you're doing. Unsupported formats may cause conversion
+              failures or playback issues.
+            </AlertDescription>
+          </Alert>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
@@ -792,14 +801,14 @@ export function GlobalSettingsPage() {
                     <SelectItem value="mp3">MP3 (Compatible)</SelectItem>
                     <SelectItem value="m4a">M4A (AAC, Good Quality)</SelectItem>
                     <SelectItem value="opus">Opus (Efficient, Web)</SelectItem>
-                    <SelectItem value="ogg">OGG (Vorbis)</SelectItem>
+                    {/* Disable OGG audio input format becuase it cause error in conversion */}
+                    {/* <SelectItem value="ogg">OGG (Vorbis)</SelectItem> */}
                     <SelectItem value="wav">WAV (Uncompressed)</SelectItem>
                     <SelectItem value="flac">FLAC (Lossless)</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormDescription>
-                  Preferred format for audio-only downloads or audio
-                  conversions.
+                  Preferred format for audio-only downloads or conversions.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

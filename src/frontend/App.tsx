@@ -236,7 +236,7 @@ export default function App(): ReactElement {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full sm:w-auto flex-shrink-0 btn-gradient"
+                    className="w-full sm:w-auto flex-shrink-0 cursor-pointer"
                     disabled={status === "loading" || !link || !isValidUrl(link.trim()) || isCriticalProcessing}
                   >
                     {status === "loading" ? (

@@ -1,7 +1,7 @@
 
 import { selectFormat } from "@/lib/download-service"
 import { createContext, useContext, useState, useEffect, useRef, type ReactNode } from "react"
-import type { DeepPartial, YtDlpAudioVideoMetadata, YtDlpMediaMetadata } from "@/types"
+import type { YtDlpAudioVideoMetadata, YtDlpMediaMetadata } from "@/types"
 import type {
   FFmpegDownloadOptions,
   ProgressResponse,
@@ -12,7 +12,6 @@ import type {
   JobSubmissionResult,
   PlaylistDownloadResult,
 } from "@/types/FfmpegCore"
-import type { GlobalSettings } from "@/types/Settings"
 import { toast } from "sonner"
 
 export type DownloadStatus = "idle" | "loading" | "success" | "error"
@@ -319,7 +318,7 @@ const startDownload = async (config: DownloadConfig): Promise<JobSubmissionResul
 
   // Handle direct image URL downloads
   if (config.type === "image" && config.method === "byURL" && config.url) {
-    let jobResult: JobSubmissionResult = {
+    const jobResult: JobSubmissionResult = {
       success: false,
       title: config.title || "Image Download",
     }

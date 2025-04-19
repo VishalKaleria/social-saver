@@ -636,7 +636,7 @@ export class FFmpegService extends EventEmitter {
       const likelyRequiresAudioEncodingForContainer =
         (options.type === 'combined' || options.type === 'video') && ['mp4', 'mov'].includes(targetFormat);
       const likelyRequiresAudioEncodingForFormat =
-        options.type === 'audio' && !['aac', 'm4a', 'opus', 'ogg', 'flac', 'wav'].includes(targetFormat); // MP3 usually needs encoding
+        options.type === 'audio' && !['aac', 'm4a', 'opus', 'flac', 'wav'].includes(targetFormat); // MP3 usually needs encoding
 
       const needsVideoEncoding = (options.type === 'combined' || options.type === 'muteVideo') && qualityRequiresEncoding;
       const needsAudioEncoding = (options.type === 'combined' || options.type === 'audio') &&

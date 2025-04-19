@@ -2382,15 +2382,19 @@ const PlaylistDownloader: React.FC<PlaylistDownloaderProps> = ({
           id: cancellationToastId,
         });
         // Send cancel requests without waiting for each to complete individually
-        const cancellationPromises = activeJobIds.map((id) =>
-          cancelDownload(id).catch((error) => {
-            // Log individual errors but don't let one fail the whole process
-            console.error(
-              `Failed to send cancel request for active job ${id}:`,
-              error
-            );
-          })
-        );
+        // maybe i never gonna use this function so i just commenting this 
+        // const cancellationPromises = activeJobIds.map((id) =>
+        //   cancelDownload(id).catch((error) => {
+        //     // Log individual errors but don't let one fail the whole process
+        //     console.error(
+        //       `Failed to send cancel request for active job ${id}:`,
+        //       error
+        //     );
+        //   })
+        // );
+
+
+        
         // We don't necessarily need to await all promises here if we just want to send the signal
         // await Promise.all(cancellationPromises); // Keep if you need to know they *tried* to send
 

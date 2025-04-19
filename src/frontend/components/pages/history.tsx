@@ -11,7 +11,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import type { JobInfo } from "@/types/FfmpegCore"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { formatBytes, formatDate, formatTime } from "@/lib/utils"
-import { PageHeader } from "../common/page-header"
 import { ElectronLink } from "../electron-hyperlink"
 
 

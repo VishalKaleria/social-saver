@@ -11,18 +11,14 @@ import { Button } from "@/components/ui/button";
 import {
   Coffee,
   Heart,
-  DollarSign,
   Github,
   ExternalLink,
   Star,
   Share2,
   Code,
-  MessageCircle,
-  Award,
   Users,
 } from "lucide-react";
 import { appConfig } from "@/lib/app-config";
-import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Accordion,

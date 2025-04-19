@@ -1,4 +1,4 @@
-import type { YtDlpAudioVideoMetadata, VideoFormat, CombinedFormat, AudioFormat, FormatArray, Thumbnail } from "@/types"
+import type { YtDlpAudioVideoMetadata, VideoFormat, CombinedFormat, AudioFormat, FormatArray } from "@/types"
 import type { DownloadType, DownloadFilter, FFmpegDownloadOptions } from "@/types/FfmpegCore"
 
 // Helper function to find format by ID

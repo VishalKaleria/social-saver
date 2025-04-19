@@ -595,7 +595,7 @@ export const GlobalContextProvider = ({
         const currentLocalType = determineYtdlpType(currentLocalVersion) // Use the loaded version
 
         // 2. Fetch latest versions from API
-        const { ytdlpVersions, appVersion, apiNotifications } = await fetchAppConfigFromApi()
+        const { ytdlpVersions, apiNotifications } = await fetchAppConfigFromApi()
 
         // 3. Calculate update status using the helper and settings preference
         const preferNightly = globalSettings.site.preferNightlyYtdlp

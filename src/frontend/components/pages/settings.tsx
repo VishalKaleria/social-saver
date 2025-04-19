@@ -1,7 +1,5 @@
 import { PageHeader } from "@/components/common/page-header";
 import { GlobalSettingsPage } from "@/components/settings/settings-page";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { InfoIcon } from "lucide-react";
 
 export default function SettingsPage() {
   return (
