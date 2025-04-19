@@ -1,0 +1,51 @@
+Social Saver - Proprietary License
+
+Copyright (c) 2025 Vishal Kaleria. All Rights Reserved.
+
+**Definitions:**
+
+*   "Software" refers to the Social Saver application, including its compiled binaries, assets, and documentation, in any form provided by the Copyright Holder.
+*   "Copyright Holder" refers to Vishal Kaleria.
+*   "You" refers to the individual or entity using the Software.
+
+**Grant of License:**
+
+The Copyright Holder grants You a limited, non-exclusive, non-transferable, revocable license to download, install, and use the compiled binary versions of the Software **free of charge** solely for **personal, non-commercial purposes**, subject to the terms and conditions of this License. Official compiled binaries are available only from the official website: https://socialsaver.site/download
+
+**Restrictions:**
+
+You **may not**:
+
+1.  Copy, modify, adapt, translate, or create derivative works based on the Software or its source code (which is not provided under this license).
+2.  Distribute, sublicense, rent, lease, lend, sell, or otherwise transfer the Software or any rights granted by this License to any third party.
+3.  Use the Software for any commercial purpose, including but not limited to, integrating it into a commercial product or service, using it for business operations, or charging others for its use or output, without obtaining a separate written commercial license from the Copyright Holder.
+4.  Reverse engineer, decompile, disassemble, or attempt to derive the source code of the Software.
+5.  Remove, alter, or obscure any copyright, trademark, or other proprietary notices contained in or on the Software.
+6.  Use the Software for any illegal purpose or in any way that violates applicable laws or regulations, including copyright laws. You are solely responsible for ensuring that your use of the Software to download content complies with the terms of service of the source websites and applicable copyright laws.
+
+**Intellectual Property:**
+
+The Software is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. The Copyright Holder retains all right, title, and interest in and to the Software, including all copyrights, patents, trade secrets, trademarks, and other intellectual property rights. This License does not grant You any ownership rights to the Software.
+
+**Disclaimer of Warranty:**
+
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.
+
+**Limitation of Liability:**
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. THIS INCLUDES, BUT IS NOT LIMITED TO, DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+**Termination:**
+
+This License will terminate automatically if You fail to comply with any of the terms and conditions herein. Upon termination, You must immediately cease all use of the Software and destroy all copies of the Software in your possession or control.
+
+**Governing Law:**
+
+This License shall be governed by and construed in accordance with the laws of the jurisdiction in which the Copyright Holder resides, without regard to its conflict of law principles.
+
+**Acknowledgement:**
+
+By downloading, installing, or using the Software, You acknowledge that You have read this License, understand it, and agree to be bound by its terms and conditions.
+
+---
+*This Software utilizes various open-source components (such as Electron, React, yt-dlp, FFmpeg). The licenses for those components govern their use and are typically included within the Software's distribution or available on their respective project websites.*
