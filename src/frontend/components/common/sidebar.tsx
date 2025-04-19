@@ -172,7 +172,7 @@ export function Sidebar() {
 
   const routes = useMemo(
     () => [
-      /* ... */ { name: "Home", path: "/", icon: <Home size={18} /> },
+      { name: "Home", path: "/", icon: <Home size={18} /> },
       { name: "History", path: "/history", icon: <History size={18} /> },
       { name: "Settings", path: "/settings", icon: <Settings size={18} /> },
       {
@@ -192,19 +192,19 @@ export function Sidebar() {
   );
   const externalLinks = useMemo(
     () => [
-      { name: "Website", url: appConfig.website, icon: <Globe size={18} /> },
+      { name: "Website", url: "https://socialsaver.site", icon: <Globe size={18} /> },
       {
         name: "Documentation",
-        url: appConfig.links.documentation,
+        url: "https://socialsaver.site/docs",
         icon: <FileText size={18} />,
       },
       {
         name: "GitHub",
-        url: appConfig.githubRepo,
+        url: appConfig.githubRepo, // Keeping this as is since it likely points to your GitHub repo
         icon: <ExternalLink size={18} />,
       },
-      { name: "Help", path: "/help", icon: <HelpCircle size={18} /> },
-      { name: "About", path: "/about", icon: <FileText size={18} /> },
+      { name: "Help", url: "https://socialsaver.site/docs/troubleshooting", icon: <HelpCircle size={18} /> },
+      { name: "About", url: "https://socialsaver.site/about", icon: <FileText size={18} /> },
     ],
     []
   );
@@ -449,55 +449,7 @@ export function Sidebar() {
               </div>
             )}
             {externalLinks.map((link) =>
-              link.path ? (
-                /* Internal */ <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={(e) => {
-                    if (!handleNavigation(link.path!)) e.preventDefault();
-                    setIsMobileOpen(false);
-                  }}
-                  className={cn("block", isNavigationDisabled && "relative")}
-                  aria-disabled={isNavigationDisabled}
-                >
-                  <TooltipProvider delayDuration={isCollapsed ? 0 : 500}>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          className={cn(
-                            "w-full justify-start h-9 text-sm",
-                            isCollapsed ? "px-0 justify-center" : "px-3",
-                            isNavigationDisabled &&
-                              "opacity-50 cursor-not-allowed hover:bg-transparent hover:opacity-50"
-                          )}
-                          disabled={isNavigationDisabled}
-                        >
-                          <span className={isCollapsed ? "mx-auto" : ""}>
-                            {link.icon}
-                          </span>
-                          {!isCollapsed && (
-                            <span className="ml-2">{link.name}</span>
-                          )}
-                        </Button>
-                      </TooltipTrigger>
-                      {(isCollapsed || isNavigationDisabled) && (
-                        <TooltipContent side="right">
-                          <p>
-                            {link.name}
-                            {isNavigationDisabled && (
-                              <span className="block text-xs text-destructive mt-1">
-                                Navigation disabled
-                              </span>
-                            )}
-                          </p>
-                        </TooltipContent>
-                      )}
-                    </Tooltip>
-                  </TooltipProvider>
-                </Link>
-              ) : (
-                /* External */ <ElectronLink
+             <ElectronLink
                   key={link.name}
                   href={link.url}
                   target="_blank"
@@ -531,7 +483,7 @@ export function Sidebar() {
                   </TooltipProvider>
                 </ElectronLink>
               )
-            )}
+            }
           </nav>
         </ScrollArea>
 
