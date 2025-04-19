@@ -114,7 +114,6 @@ This GitHub repository is the place for community interaction!
 *   **Have an idea for a new feature?** Please [**suggest it here**](https://github.com/vishalkaleria/social-saver/issues/new?template=feature_request.md).
 *   **General Question?** Check the [Documentation](https://socialsaver.site/docs) first, or start a discussion if appropriate.
 
-*(Please note: While this repository is public for issue tracking and releases, the source code for Social Saver is currently private and not hosted here.)*
 
 ---
 
