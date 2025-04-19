@@ -51,7 +51,7 @@ jobs:
 
       - name: Build & Publish via electron-builder
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EP_GH_IGNORE_TIME: true
         run: |
           pnpm run build || echo "Build failed, continuing..."
