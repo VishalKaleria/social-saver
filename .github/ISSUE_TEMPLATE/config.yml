@@ -1,16 +1,11 @@
-# .github/ISSUE_TEMPLATE/config.yml
-
-blank_issues_enabled: false # Strongly encourage users to use templates
-# Removed contact_links below to ensure the template chooser appears directly.
-# GitHub will now look for your .md files instead of showing these links first.
-
-# contact_links:  <--- Comment out or delete this whole section
-#  - name: ❓ Ask a Question / General Discussion
-#    url: https://github.com/vishalkaleria/social-saver/discussions
-#    about: Please ask and answer general usage questions here.
-#  - name: 📚 Documentation & Guides
-#    url: https://socialsaver.site/docs
-#    about: Check the documentation for setup, usage guides, and troubleshooting.
-#  - name: 💬 Community Support (Reddit)  <--- Add your Reddit link here if you want
-#    url: https://www.reddit.com/r/Social_Save/  # <-- Your Subreddit Link
-#    about: Ask the community for help or discuss the app on Reddit.
+blank_issues_enabled: false
+contact_links:
+   - name: ❓ Ask a Question / General Discussion
+     url: https://github.com/vishalkaleria/social-saver/discussions
+     about: Please ask usage questions or start general discussions here.
+   - name: 📚 Documentation & Guides
+     url: https://socialsaver.site/docs
+     about: Check the documentation for setup, usage guides, and troubleshooting first.
+   - name: 💬 Community Support (Reddit)
+     url: https://www.reddit.com/r/Social_Save/
+     about: Ask the community for help or discuss the app on Reddit.
