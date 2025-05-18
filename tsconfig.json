@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["vite/client"],
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Path aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/frontend/*"],
+      "@electron/*": ["src/electron/*"]
+    }
+  },
+  "include": [
+    "src",
+    "electron",
+    "types",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "node_modules/vite-plugin-electron/electron-env.d.ts"
+  ]
+}
