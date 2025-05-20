@@ -1,4 +1,4 @@
-# Social Saver: Your Ultimate All-in-One Desktop Media Downloader
+# Social Saver: All-in-One Desktop Media Downloader
 
 <p align="center">
   <strong>Effortlessly download videos, audio, playlists, and image galleries from your favorite social media platforms and websites directly to your desktop.</strong>
