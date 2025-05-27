@@ -1,44 +1,53 @@
-# Social Saver: All-in-One Desktop Media Downloader
+# Social Saver: Your All-in-One Desktop Media Downloader
 
 <p align="center">
-  <strong>Effortlessly download videos, audio, playlists, and image galleries from your favorite social media platforms and websites directly to your desktop.</strong>
+  <strong>Effortlessly save videos, audio, playlists, and image galleries from your favorite websites directly to your desktop.</strong>
 </p>
 
 <p align="center">
-  <a href="https://socialsaver.site/download" title="Download Social Saver for Windows"><img src="https://img.shields.io/badge/Download%20for-Windows-blue?style=for-the-badge&logo=windows" alt="Download Social Saver for Windows"></a>
-  <a href="https://socialsaver.site/download" title="Download Social Saver for macOS"><img src="https://img.shields.io/badge/Download%20for-macOS-blueviolet?style=for-the-badge&logo=apple" alt="Download Social Saver for macOS"></a>
-  <a href="https://socialsaver.site/download" title="Download Social Saver for Linux"><img src="https://img.shields.io/badge/Download%20for-Linux-orange?style=for-the-badge&logo=linux" alt="Download Social Saver for Linux"></a>
+  <img src="https://socialsaver.site/screenshots/social-saver-hero-overview.webp" alt="Social Saver Application Overview" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
 </p>
 
-Social Saver is a user-friendly desktop application for Windows, macOS, and Linux that makes saving online media simple. Powered by the robust `yt-dlp` and `gallery-dl` engines, it allows you to easily download videos, audio tracks, entire playlists, and full image galleries for offline access.
+<p align="center">
+  <a href="https://socialsaver.site/download" title="Download Social Saver for Windows">
+    <img src="https://img.shields.io/badge/Download%20for-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Download Social Saver for Windows">
+  </a>
+  <a href="https://socialsaver.site/download" title="Download Social Saver for macOS">
+    <img src="https://img.shields.io/badge/Download%20for-macOS-6B4FBC?style=for-the-badge&logo=apple&logoColor=white" alt="Download Social Saver for macOS">
+  </a>
+  <a href="https://socialsaver.site/download" title="Download Social Saver for Linux">
+    <img src="https://img.shields.io/badge/Download%20for-Linux-F37626?style=for-the-badge&logo=linux&logoColor=white" alt="Download Social Saver for Linux">
+  </a>
+</p>
+
+Social Saver is a free, user-friendly desktop application for **Windows, macOS, and Linux** that simplifies saving online media. Powered by the robust `yt-dlp` and `gallery-dl` engines, it allows you to easily download videos, audio tracks, entire playlists, and full image galleries for offline access.
 
 ---
 
 ## ✨ Key Features
 
 *   **Universal Media Downloader:**
-    *   **Videos & Audio:** Download single videos or audio tracks.
-    *   **Playlists:** Grab entire playlists with options to select individual items.
-    *   **Versatile Quality & Formats:** Choose from various video qualities (144p up to 8K) and formats (MP4, MKV, WebM). Extract audio in multiple formats (MP3, M4A, Opus, FLAC, WAV).
-    *   **Flexible Streams:** Download video-only, audio-only, or combined streams. Option to download videos without audio (muted).
-*   **Powerful Image & Gallery Downloader:**
-    *   Save entire image galleries or user profiles from sites like Instagram.
+    *   **Videos & Audio:** Download single videos or extract audio tracks.
+    *   **Playlists:** Grab entire playlists with options to select/deselect individual items.
+    *   **Flexible Quality & Formats:** Choose from various video qualities (144p up to 8K) and formats (MP4, MKV, WebM). Extract audio in multiple formats (MP3, M4A, Opus, FLAC, WAV).
+    *   **Stream Selection:** Download video-only, audio-only, or combined streams. Option to download muted videos.
+*   **Powerful Image & Gallery Archiver:**
+    *   Save complete image galleries or user profiles from sites like Instagram.
     *   Supports cookies (via browser or file) for sites requiring login.
 *   **Comprehensive Download Management:**
     *   Track active downloads with real-time progress, speed, and ETA.
     *   View detailed download history (completed, failed, cancelled).
     *   Retry failed downloads or cancel ongoing ones with ease.
-*   **Highly Customizable Settings:**
+*   **Highly Customizable:**
     *   Set default download paths for videos, audio, and images.
     *   Choose default conversion formats and quality.
     *   Create custom filename templates using various metadata variables (title, uploader, date, etc.).
     *   Configure performance settings like max concurrent jobs and cooldowns.
-    *   Manage application behavior, theme (Light/Dark/System), and history preferences.
-*   **Easy Download Engine Management:**
+*   **Easy Engine Management:**
     *   Keep the core `yt-dlp` and `gallery-dl` engines updated with a single click from the "Dependencies" page.
     *   Option to prefer nightly builds for `yt-dlp` for the latest features.
-*   **Cross-Platform:** Available for Windows, macOS, and Linux.
-*   **User-Friendly Interface:** Clean, intuitive design with clear navigation.
+*   **User-Friendly Interface:** Clean, intuitive design with clear navigation and light/dark/system theme support.
+*   **Cross-Platform:** Native application for Windows, macOS, and Linux.
 
 ---
 
@@ -52,7 +61,7 @@ Social Saver is a user-friendly desktop application for Windows, macOS, and Linu
 
 ## 🌐 Supported Websites
 
-Thanks to the power of `yt-dlp` and `gallery-dl`, Social Saver supports downloading from thousands of websites, including (but not limited to):
+Thanks to `yt-dlp` and `gallery-dl`, Social Saver supports thousands of websites, including:
 
 *   YouTube (Videos, Playlists, Audio)
 *   Instagram (Images, Videos, User Profiles)
@@ -61,131 +70,120 @@ Thanks to the power of `yt-dlp` and `gallery-dl`, Social Saver supports download
 *   Twitter / X
 *   Vimeo
 *   SoundCloud
-*   And many, many more! (Check the official [yt-dlp supported sites list](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) and [gallery-dl supported sites list](https://github.com/mikf/gallery-dl/blob/master/docs/supportedsites.md) for extensive details.)
+*   ...and many more!
 
----
-
-## 🖼️ Screenshots
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/downloding-a-video-in-social-saver.png" alt="Social Saver video downloader interface showing download options" width="48%">
-  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/downloading-playlist.png" alt="Social Saver playlist downloader interface with item selection" width="48%">
-</p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/gallery-dl-screenshot.png" alt="Social Saver image and gallery downloader (gallery-dl) interface" width="48%">
-  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/download-history-page.png" alt="Social Saver download history page displaying past downloads" width="48%">
-</p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/binary-management-page.png" alt="Social Saver dependencies management page for yt-dlp and gallery-dl" width="48%">
-  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/social-saver-settings.png" alt="Social Saver application settings page" width="48%">
-</p>
+For a comprehensive list, check the official documentation for [yt-dlp supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) and [gallery-dl supported sites](https://github.com/mikf/gallery-dl/blob/master/docs/supportedsites.md).
 
 ---
 
 ## 💾 Installation
 
-1.  **Visit the Official Website:** Go to [socialsaver.site/download](https://socialsaver.site/download).
+1.  **Visit the Official Website:** Go to [**socialsaver.site/download**](https://socialsaver.site/download).
 2.  **Download:** Click the download button for your operating system.
 3.  **Install:**
-    *   **Windows:** Run the downloaded `.exe` installer and follow the on-screen instructions.
+    *   **Windows:** Run the downloaded `.exe` installer.
     *   **macOS:** Open the downloaded `.dmg` file and drag `Social Saver.app` to your Applications folder.
     *   **Linux:**
-        *   **AppImage:** Make the `.AppImage` file executable (`chmod +x SocialSaver.AppImage`) and run it.
-        *   **.deb:** Install using your package manager (e.g., `sudo dpkg -i socialsaver.deb && sudo apt-get install -f`).
-        *   **.rpm:** Install using your package manager (e.g., `sudo rpm -i socialsaver.rpm`).
+        *   **AppImage:** Make it executable (`chmod +x SocialSaver*.AppImage`) and run.
+        *   **.deb / .rpm:** Install using your system's package manager (e.g., `sudo dpkg -i socialsaver*.deb` or `sudo rpm -i socialsaver*.rpm`).
 
 ---
 
 ## 📖 How to Use Social Saver
 
-Social Saver is designed for ease of use. Navigate using the sidebar:
+Social Saver's interface is straightforward. Use the sidebar to navigate:
 
-*   **Video Downloader:** For `yt-dlp` based video and audio downloads.
-*   **Image & Gallery DL:** For `gallery-dl` based image and gallery downloads.
-*   **History:** View your past and ongoing downloads.
-*   **Settings:** Customize various aspects of the application.
-*   **Dependencies:** Manage and update `yt-dlp` and `gallery-dl`.
-*   **Donate:** Support the project (if applicable).
+*   **Video/Audio Downloader:** For `yt-dlp` based video and audio downloads.
+*   **Image/Gallery Downloader:** For `gallery-dl` based image and gallery downloads.
+*   **Active Downloads:** View currently processing downloads.
+*   **History:** See all your past and ongoing downloads.
+*   **Settings:** Customize the app.
+*   **Dependencies:** Manage `yt-dlp` and `gallery-dl` updates.
 
-### 1. Downloading a Single Video or Audio
-*Example: Selecting video quality and format for a YouTube video.*
+### 1. Downloading Videos or Audio
+<p align="center">
+  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/downloding-a-video-in-social-saver.png" alt="Social Saver video downloader interface" width="70%">
+</p>
 
-1.  Navigate to the **Video Downloader** tab.
-2.  Paste the URL of the video or audio into the input field and click "Search".
-3.  Once media info loads, choose your **Download Type** (Combined, Video + Audio, Audio Only), **Quality**, and **Format**.
-4.  Click the **Download Selected** button. Track progress in the "Downloads" sub-tab or on the main "History" page.
+1.  Go to the **Video/Audio Downloader** tab.
+2.  Paste the URL of the video or audio and click "Search".
+3.  After the media info loads, select your desired **Download Type** (e.g., Video + Audio, Audio Only), **Quality**, and **Format**.
+4.  Click **Download Selected**. Track progress in "Active Downloads" or "History".
 
 ### 2. Downloading Playlists
-*Example: Managing and downloading items from a YouTube playlist.*
+<p align="center">
+  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/downloading-playlist.png" alt="Social Saver playlist downloader interface" width="70%">
+</p>
 
-1.  Go to the **Video Downloader** tab.
-2.  Paste the URL of the playlist and click "Search".
-3.  Use the master checkbox to select/deselect all items, or pick items individually.
-4.  Set download type and quality for each item, or use the **Bulk Settings** for selected items.
-5.  Click **Download Selected (`N`)** to start downloading.
+1.  Go to the **Video/Audio Downloader** tab.
+2.  Paste the playlist URL and click "Search".
+3.  Select/deselect all items or pick individual ones.
+4.  Adjust download type and quality for each item or use **Bulk Settings**.
+5.  Click **Download Selected (`N`)**.
 
-### 3. Downloading Images & Galleries (e.g., Instagram)
-*Example: Downloading all images from an Instagram profile.*
+### 3. Downloading Images & Galleries
+<p align="center">
+  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/gallery-dl-screenshot.png" alt="Social Saver image and gallery downloader" width="70%">
+</p>
 
-1.  Navigate to the **Image & Gallery DL** tab.
-2.  Paste the URL of the image gallery, user profile, or single image page.
-3.  Configure **Cookies** on this page if the site requires login (details in Settings).
-4.  Click the **Download** button. Progress is shown in a terminal-like output.
+1.  Go to the **Image/Gallery Downloader** tab.
+2.  Paste the URL of the gallery, user profile, or single image.
+3.  If login is needed, configure **Cookies** in this page's settings or globally via **Settings > Downloads > Cookies**.
+4.  Click **Download**. Output appears in the terminal view.
 
-### 4. Tracking Your Downloads
-*Example: Viewing the download history page.*
-
-*   **Video Downloader > Downloads Tab:** Shows active `yt-dlp` jobs with details.
-*   **History Page:** A comprehensive list of all downloads (video, audio, image) with status. Allows retry, cancel, open file, or open containing folder.
-
-### 5. Customizing Settings
-*Example: Configuring application settings for paths, formats, and filenames.*
+### 4. Customizing Settings
+<p align="center">
+  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/social-saver-settings.png" alt="Social Saver application settings" width="70%">
+</p>
 
 1.  Go to the **Settings** page.
-2.  Tabs for:
-    *   **Downloads:** Default save locations, formats, conversion quality, performance (concurrent jobs).
-    *   **Filenames:** Custom filename templates (e.g., `${uploader} - ${title}.${ext}`).
-    *   **Application:** App theme, history saving, notifications.
-    *   **Advanced:** Fine-tune `yt-dlp` (retries, timeout, proxy), cookie settings for authentication.
+2.  Explore tabs for:
+    *   **Downloads:** Set default save locations, formats, quality, performance.
+    *   **Filenames:** Create custom filename patterns (e.g., `${uploader} - ${title}.${ext}`).
+    *   **Application:** Choose app theme, history preferences, notifications.
+    *   **Advanced:** Fine-tune `yt-dlp` options (retries, timeout, proxy) and advanced cookie settings.
 
-### 6. Managing Download Engines (Dependencies)
-*Example: Checking and updating yt-dlp and gallery-dl engines.*
+### 5. Keeping Engines Updated
+<p align="center">
+  <img src="https://raw.githubusercontent.com/VishalKaleria/social-saver/main/public/screenshots/binary-management-page.png" alt="Social Saver dependencies management" width="70%">
+</p>
 
-1.  Navigate to the **Dependencies** page.
-2.  View status and versions of `yt-dlp` and `gallery-dl`.
-3.  Check for updates and install the latest versions to ensure compatibility.
+1.  Go to the **Dependencies** page.
+2.  Check the status and versions of `yt-dlp` and `gallery-dl`.
+3.  Click "Check for Updates" and then "Update" if available to ensure best compatibility.
 
 ---
 
-## 🛠️ Troubleshooting Tips
+## 🛠️ Troubleshooting
 
 *   **Download Failed?**
-    1.  **Update Engines:** Go to "Dependencies" and update `yt-dlp` and `gallery-dl`. This is the most common fix.
-    2.  **Check URL:** Ensure the URL is correct and the content is publicly accessible.
-    3.  **Cookies:** For private content or sites needing login, configure cookies (in "Image & Gallery DL" page settings or global "Settings" -> "Advanced").
-*   **"FFmpeg not found"?**
-    *   Social Saver uses FFmpeg for merging/conversions. Ensure FFmpeg is installed and in your system's PATH, or specify its path in Social Saver's settings (if available - usually managed by the app).
+    1.  **Update Engines:** The most common fix! Go to "Dependencies" and update `yt-dlp` and `gallery-dl`.
+    2.  **Check URL:** Ensure it's correct and the content is public or accessible.
+    3.  **Cookies:** For private content, configure cookies in **Settings > Downloads > Cookies** or via the **Image/Gallery Downloader** page settings.
+*   **"FFmpeg not found" (or similar for yt-dlp/gallery-dl)?**
+    *   Social Saver attempts to manage these. If issues persist, ensure the executables are findable by the system (e.g., in PATH) or correctly configured in Social Saver's settings (usually done automatically by the app).
 
 ---
 
 ## 💻 Tech Stack
 
-*   **Frontend:** React, Shadcn/ui, Tailwind CSS
-*   **Backend Logic/Desktop Framework:** Electron, Node.js
+*   **Framework:** Electron
+*   **UI:** React, Next.js (for landing page), Shadcn/ui, Tailwind CSS
 *   **Core Download Engines:** `yt-dlp`, `gallery-dl`
-*   **Video/Audio Processing:** FFmpeg
+*   **Media Processing:** FFmpeg (for merging/conversion)
+*   **Language:** TypeScript
 
 ---
 
 ## 📄 License
 
 Social Saver is provided free for personal, non-commercial use.
-Download official versions only from [socialsaver.site/download](https://socialsaver.site/download).
+Please download official versions only from [**socialsaver.site/download**](https://socialsaver.site/download).
 
-Copyright © 2025 Vishal Kaleria.
+Copyright © 2024 Vishal Kaleria. All Rights Reserved.
 
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/vishalkaleria" title="Vishal Kaleria's GitHub Profile">Vishal Kaleria</a>
+  Made with ❤️ by <a href="https://github.com/vishalkaleria" title="Vishal Kaleria's GitHub Profile">Vishal Kaleria</a>.
 </p>
